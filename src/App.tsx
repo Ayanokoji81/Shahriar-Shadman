@@ -454,7 +454,7 @@ export default function App() {
           <div className="space-y-16">
             <div className="text-center max-w-3xl mx-auto space-y-3">
               <span className="font-mono text-xs text-amber-500 tracking-widest uppercase font-semibold">Background & Qualifications</span>
-              <h1 className="text-3xl sm:text-5xl font-serif font-bold">Academic Journey</h1>
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold">Academic Journey </h1>
               <div className="w-16 h-1 bg-amber-500 mx-auto rounded-full" />
             </div>
 
