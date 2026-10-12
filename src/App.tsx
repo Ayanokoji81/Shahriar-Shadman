@@ -227,7 +227,7 @@ export default function App() {
           >
             <span className="text-amber-500">&lt;</span>
             <span className={darkMode ? 'text-white' : 'text-stone-900'}>SHADMAN</span>
-            <span className="text-amber-500">.EEE/&gt;</span>
+            <span className="text-amber-500">&gt;</span>
           </button>
 
           {/* Desktop Nav Items */}
@@ -237,8 +237,8 @@ export default function App() {
               { id: 'about', label: '02. About' },
               { id: 'skills', label: '03. Skills & Software' },
               { id: 'projects', label: '04. Projects' },
-              { id: 'workbench', label: '05. EEE Workbench' },
-              { id: 'contact', label: '06. Contact' }
+              
+              { id: 'contact', label: '05. Contact' }
             ].map((item) => (
               <button
                 key={item.id}
@@ -279,8 +279,8 @@ export default function App() {
               { id: 'about', label: '02. About & Education' },
               { id: 'skills', label: '03. Skills & Software' },
               { id: 'projects', label: '04. Engineering Projects' },
-              { id: 'workbench', label: '05. EEE Workbench' },
-              { id: 'contact', label: '06. Get in Touch' }
+          
+              { id: 'contact', label: '05. Get in Touch' }
             ].map((item) => (
               <button
                 key={item.id}
@@ -689,163 +689,7 @@ export default function App() {
           </div>
         )}
 
-        {/* PAGE 5: EEE WORKBENCH & CALCULATORS */}
-        {activeTab === 'workbench' && (
-          <div className="space-y-12">
-            <div className="text-center max-w-3xl mx-auto space-y-3">
-              <span className="font-mono text-xs text-amber-500 tracking-widest uppercase font-semibold">Interactive Circuit Workbench</span>
-              <h1 className="text-3xl sm:text-5xl font-serif font-bold">EEE Calculator Suite</h1>
-              <p className={`text-xs font-mono ${darkMode ? 'text-stone-400' : 'text-stone-600'}`}>
-                Test interactive circuit equations directly on this workbench.
-              </p>
-              <div className="w-16 h-1 bg-amber-500 mx-auto rounded-full" />
-            </div>
-
-            <div className={`max-w-4xl mx-auto rounded-2xl border p-6 sm:p-8 ${darkMode ? 'bg-stone-900 border-amber-900/40' : 'bg-white border-amber-200'} shadow-2xl`}>
-              
-              {/* Tab Selector */}
-              <div className="flex flex-wrap border-b border-amber-500/20 mb-8 font-mono text-xs sm:text-sm gap-2">
-                <button
-                  onClick={() => setCalcTab('ohms')}
-                  className={`py-2.5 px-4 rounded-t-lg font-bold transition-all ${calcTab === 'ohms' ? 'bg-amber-500 text-black' : 'text-stone-400 hover:text-amber-400'}`}
-                >
-                  Ohm's Law & Power
-                </button>
-                <button
-                  onClick={() => setCalcTab('rc')}
-                  className={`py-2.5 px-4 rounded-t-lg font-bold transition-all ${calcTab === 'rc' ? 'bg-amber-500 text-black' : 'text-stone-400 hover:text-amber-400'}`}
-                >
-                  RC Filter Cutoff (fc)
-                </button>
-                <button
-                  onClick={() => setCalcTab('led')}
-                  className={`py-2.5 px-4 rounded-t-lg font-bold transition-all ${calcTab === 'led' ? 'bg-amber-500 text-black' : 'text-stone-400 hover:text-amber-400'}`}
-                >
-                  MCU LED Resistor
-                </button>
-              </div>
-
-              {/* Ohm's Law Calculator */}
-              {calcTab === 'ohms' && (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
-                    <div>
-                      <label className="block text-amber-500 font-bold mb-2">Voltage V (Volts)</label>
-                      <input
-                        type="number"
-                        value={ohmsV}
-                        onChange={(e) => setOhmsV(parseFloat(e.target.value) || 0)}
-                        className={`w-full p-3 rounded-lg border font-mono ${darkMode ? 'bg-stone-950 border-stone-800 text-white' : 'bg-amber-50 border-amber-200 text-stone-900'}`}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-amber-500 font-bold mb-2">Resistance R (Ohms Ω)</label>
-                      <input
-                        type="number"
-                        value={ohmsR}
-                        onChange={(e) => setOhmsR(parseFloat(e.target.value) || 0.001)}
-                        className={`w-full p-3 rounded-lg border font-mono ${darkMode ? 'bg-stone-950 border-stone-800 text-white' : 'bg-amber-50 border-amber-200 text-stone-900'}`}
-                      />
-                    </div>
-                  </div>
-
-                  <div className={`p-6 rounded-xl border font-mono ${darkMode ? 'bg-stone-950 border-amber-900/40' : 'bg-amber-50/80 border-amber-200'} space-y-3`}>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-stone-400">Calculated Current (I = V / R):</span>
-                      <span className="text-amber-500 font-bold text-base sm:text-lg">{currentI.toFixed(4)} A ({(currentI * 1000).toFixed(2)} mA)</span>
-                    </div>
-                    <div className="flex justify-between items-center text-sm pt-2 border-t border-amber-500/20">
-                      <span className="text-stone-400">Power Dissipation (P = V × I):</span>
-                      <span className="text-amber-500 font-bold text-base sm:text-lg">{powerW.toFixed(3)} W ({(powerW * 1000).toFixed(1)} mW)</span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* RC Cutoff Calculator */}
-              {calcTab === 'rc' && (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-xs">
-                    <div>
-                      <label className="block text-amber-500 font-bold mb-2">Resistance R (Ohms Ω)</label>
-                      <input
-                        type="number"
-                        value={rcR}
-                        onChange={(e) => setRcR(parseFloat(e.target.value) || 0)}
-                        className={`w-full p-3 rounded-lg border font-mono ${darkMode ? 'bg-stone-950 border-stone-800 text-white' : 'bg-amber-50 border-amber-200 text-stone-900'}`}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-amber-500 font-bold mb-2">Capacitance C (Microfarads µF)</label>
-                      <input
-                        type="number"
-                        value={rcC}
-                        step="0.01"
-                        onChange={(e) => setRcC(parseFloat(e.target.value) || 0)}
-                        className={`w-full p-3 rounded-lg border font-mono ${darkMode ? 'bg-stone-950 border-stone-800 text-white' : 'bg-amber-50 border-amber-200 text-stone-900'}`}
-                      />
-                    </div>
-                  </div>
-
-                  <div className={`p-6 rounded-xl border font-mono ${darkMode ? 'bg-stone-950 border-amber-900/40' : 'bg-amber-50/80 border-amber-200'}`}>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-stone-400">Cutoff Frequency fc = 1 / (2π · R · C):</span>
-                      <span className="text-amber-500 font-bold text-base sm:text-lg">
-                        {rcFc > 1000 ? `${(rcFc / 1000).toFixed(2)} kHz` : `${rcFc.toFixed(2)} Hz`}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* LED Current Limiting Calculator */}
-              {calcTab === 'led' && (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
-                    <div>
-                      <label className="block text-amber-500 font-bold mb-2">Supply Vcc (V)</label>
-                      <input
-                        type="number"
-                        value={ledVcc}
-                        onChange={(e) => setLedVcc(parseFloat(e.target.value) || 0)}
-                        className={`w-full p-3 rounded-lg border font-mono ${darkMode ? 'bg-stone-950 border-stone-800 text-white' : 'bg-amber-50 border-amber-200 text-stone-900'}`}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-amber-500 font-bold mb-2">LED Forward Vf (V)</label>
-                      <input
-                        type="number"
-                        value={ledVf}
-                        step="0.1"
-                        onChange={(e) => setLedVf(parseFloat(e.target.value) || 0)}
-                        className={`w-full p-3 rounded-lg border font-mono ${darkMode ? 'bg-stone-950 border-stone-800 text-white' : 'bg-amber-50 border-amber-200 text-stone-900'}`}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-amber-500 font-bold mb-2">Desired Current (mA)</label>
-                      <input
-                        type="number"
-                        value={ledIf}
-                        onChange={(e) => setLedIf(parseFloat(e.target.value) || 0)}
-                        className={`w-full p-3 rounded-lg border font-mono ${darkMode ? 'bg-stone-950 border-stone-800 text-white' : 'bg-amber-50 border-amber-200 text-stone-900'}`}
-                      />
-                    </div>
-                  </div>
-
-                  <div className={`p-6 rounded-xl border font-mono ${darkMode ? 'bg-stone-950 border-amber-900/40' : 'bg-amber-50/80 border-amber-200'}`}>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-stone-400">Required Series Resistor:</span>
-                      <span className="text-amber-500 font-bold text-base sm:text-lg">
-                        {ledR > 0 ? `${ledR.toFixed(1)} Ω (Nearest standard: 220 Ω)` : 'Invalid Voltages'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-            </div>
-          </div>
-        )}
+     
 
         {/* PAGE 6: CONTACT */}
         {activeTab === 'contact' && (
@@ -868,11 +712,6 @@ export default function App() {
                   <p className="text-xs text-stone-400 font-mono">Department of EEE • Session 2024-2025 (2-1)</p>
                 </div>
 
-                <div className={`p-6 rounded-2xl border ${darkMode ? 'bg-stone-900 border-stone-800' : 'bg-white border-amber-200'} space-y-2`}>
-                  <p className="text-xs font-mono text-amber-500 uppercase font-bold">Hometown</p>
-                  <p className="font-bold text-base font-serif">Tangail / Jamalpur, Bangladesh</p>
-                  <p className="text-xs text-stone-400 font-mono">Bindu Bashini Govt Boys' High School Alumni</p>
-                </div>
 
                 <div className={`p-6 rounded-2xl border ${darkMode ? 'bg-stone-900 border-stone-800' : 'bg-white border-amber-200'} space-y-2`}>
                   <p className="text-xs font-mono text-amber-500 uppercase font-bold">Direct Communication</p>
